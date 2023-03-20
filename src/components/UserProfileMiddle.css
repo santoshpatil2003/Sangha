@@ -1,0 +1,84 @@
+.middlebox{
+    /* background-color: red; */
+    height: 100%;
+    border-radius: 10px;
+}
+
+.userpost{
+    position: relative;
+    border-radius: 10px;
+    margin: 0% 2% 0% 2%;
+    border: 1px solid black;
+    /* background-color: black; */
+    height: 250px;
+}
+
+.toppost{
+    padding-top: 2%;
+    /* background-color: red; */
+}
+
+.postdp{
+    /* background-color: blue; */
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 100px;
+    width: 150px;
+    bottom: 75px;
+    left: 40px;
+    position: relative;
+    z-index: 0;
+}
+
+.name{
+	border-radius: 0%;
+	height: auto;
+	width: 100%;
+	font-family: 'poppins';
+	flex-basis: 10px;
+	margin: 0%;
+}
+
+.nam{
+	text-decoration: none;
+}
+
+.idh4{
+    font-family: 'Poppins';
+    font-size: medium;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin: 0%;
+    font-weight: 600;
+}
+
+.nam34{
+    font-family: 'Poppins';
+    font-size: medium;
+    margin: 0%;
+    font-weight: 600;
+}
+
+.idspan{
+	border-radius: 0%;
+	height: auto;
+	width: 100%;
+	font-family: 'poppins';
+	color: rgba(0, 0, 0, 0.4);
+	/* background-color: blue; */
+}
+
+.namedata{
+    position: relative;
+    /* background-color: red; */
+    width: 150px;
+    bottom: 75px;
+    left: 35px;
+    text-align: center;
+}
+
+.usernamedp{
+    /* background-color: green; */
+    width: 30%;
+    
+}

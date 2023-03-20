@@ -1,0 +1,11 @@
+.Left-container{
+    position: sticky;
+    top: 1%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px grey;
+    /* z-index: 1; */
+    margin: 5px;
+    height: 87.5vh;
+    width: 70px;
+  }

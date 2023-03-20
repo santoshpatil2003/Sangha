@@ -1,0 +1,32 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.bodypage{
+    background-color: #AC66FE;
+    height: 100vh;
+    display: flex;
+}
+
+.left{
+    height: 100vh;
+    width: 50vw;
+   align-content: center;
+}
+
+/* .left h1{
+    color: white;
+    font-family: 'Poppins',sans-serif;
+    font-size: 15vh;
+    font-weight: 700;
+    margin-top: 30vh;
+} */
+
+.center{
+    height: 100vh;
+    width: 50vw;
+    align-content: center;
+    position: relative;
+    left: 25%;
+}

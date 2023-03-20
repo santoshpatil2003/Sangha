@@ -1,0 +1,95 @@
+.B1{
+    background-color: #AC66FE;
+    font-family: 'Poppins';
+}
+
+.sanghadata2{
+    height: 100%;
+    /* background-color: blue; */
+    display: flex;
+  }
+
+  .left-data2{
+    height: 100%;
+    /* background-color: chocolate; */
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .circle2{
+    width: 60px;
+    height: 60px;
+    /* background-color: black; */
+    border-radius: 50px;
+    /* border: 1px solid black; */
+  }
+
+.po2{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+  }
+
+  .right-data2{
+    /* background-color: brown; */
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nd2{
+    width: 90%;
+    height: fit-content;
+    /* background-color: cyan; */
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 0%;
+  }
+
+  .SN2{
+    font-size: small;
+    border-radius: 0%;
+	  height: auto;
+	  width: 100%;
+	  font-family: 'poppins';
+    padding: 0%;
+    color: black;
+    margin-bottom: 1%;
+	  /* flex-basis: 10px;
+	  margin: 0%; */
+  }
+
+  .FN2{
+    font-size: smaller;
+    border-radius: 0%;
+	  height: auto;
+	  width: 100%;
+	  font-family: 'poppins';
+	  color: rgba(0, 0, 0, 0.4);
+    padding: 0%;
+    margin: 0%;
+  }
+
+  .sp{
+    color: rgba(0, 0, 0, 0.4);
+    font-family: 'Poppins';
+    font-size: small;
+    font-weight: 600;
+  }
+
+  
+  .money{
+    color: black;
+    font-family: 'Poppins';
+    font-size: larger;
+  }
+
+  .col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

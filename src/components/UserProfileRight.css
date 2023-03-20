@@ -1,0 +1,17 @@
+.messegebox{
+    height: 100%;
+    /* background-color: burlywood; */
+    border-radius: 10px;
+}
+
+.title{
+    /* background-color: red; */
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: large;
+    height: fit-content;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+
+

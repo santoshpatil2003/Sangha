@@ -1,0 +1,76 @@
+.sanghadata{
+    height: 100%;
+    /* background-color: blue; */
+    border-bottom: 0.1px solid #F6F6F2;
+    display: flex;
+  }
+
+.linkname{
+  text-decoration: none;
+  height: 35%;
+}
+
+  .left-data{
+    height: 100%;
+    /* background-color: chocolate; */
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .circle{
+    width: 60px;
+    height: 60px;
+    /* background-color: black; */
+    border-radius: 50px;
+    /* border: 1px solid black; */
+  }
+
+  .circle img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+  }
+
+  .right-data{
+    /* background-color: brown; */
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nd{
+    width: 90%;
+    height: fit-content;
+    /* background-color: cyan; */
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 0%;
+  }
+
+  .SN{
+    font-size: small;
+    border-radius: 0%;
+	  height: auto;
+	  width: 100%;
+	  font-family: 'poppins';
+    padding: 0%;
+    color: black;
+    margin-bottom: 1%;
+	  /* flex-basis: 10px;
+	  margin: 0%; */
+  }
+
+  .FN{
+    font-size: smaller;
+    border-radius: 0%;
+	  height: auto;
+	  width: 100%;
+	  font-family: 'poppins';
+	  color: rgba(0, 0, 0, 0.4);
+    padding: 0%;
+    margin: 0%;
+  }

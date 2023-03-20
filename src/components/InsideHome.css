@@ -1,0 +1,14 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.s{
+    height: fit-content;
+}
+
+.body10 {
+    display: flex;
+    height: fit-content;
+    background-color: #F6F6F2;
+    width: 100%;
+  }

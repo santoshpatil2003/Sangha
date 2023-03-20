@@ -1,0 +1,17 @@
+.sendbutton{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #AC66FE;
+}
+
+.textbox{
+    border: 2px solid #F6F6F2;
+    outline: none;
+}
+
+.textbox:focus{
+    border: 2px solid #F6F6F2;
+    outline: none;
+}

@@ -1,0 +1,180 @@
+.bodybox{
+    color: white;
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+}
+.box form{
+    display: flex;
+    flex-direction: column;
+    /* background-color: blue; */
+    height: 70%;
+    position: relative;
+    top: 25%;
+    
+}
+.box header{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    flex-basis: 80px;
+    align-self: center;
+}
+
+.email{
+    width: 50%;
+    height: 10%;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    align-self: center;
+}
+.name15{
+    width: 50%;
+    height: 10%;
+    margin-bottom: 25px;
+    border-radius: 50px;
+    align-self: center;
+}
+
+.email input{
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background-color: white;
+    border: none;
+    padding-left: 20px;
+    outline: none;
+}
+
+/* .email input:focus{
+    border: none;
+} */
+
+.name15 input{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 50px;
+    border: none;
+    padding-left: 20px;
+    outline: none;
+}
+
+/* .nextbutton1{
+    width: 7%;
+    height: 11%;
+    border-radius: 50px;
+    align-self: flex-end;
+    margin-top: 6px;
+    margin-right: 22%;
+} */
+
+/* .nextbutton1 button{
+    color: #AC66FE;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 700;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    border: none;
+    padding-top: 5%;
+} */
+
+.loginbutton10 .nextbutton10{
+    color: #AC66FE;
+    /* font-family: 'Poppins',sans-serif;
+    font-weight: 700; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7%;
+    height: 120%;
+    border-radius: 100px;
+    border: none;
+    padding-top: 0%;
+    margin-right: 10%;
+}
+
+.nex{
+    width: 7%;
+    height: 11%;
+    border-radius: 100px;
+    margin-left: 70%;
+}
+
+.nex button{
+    color: #AC66FE;
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    background-color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .nextbutton1{
+    color: #AC66FE;
+    width: 8%;
+    height: 140%;
+    border-radius: 100px;
+    border: none;
+    padding-top: 0%;
+    margin-right: 10%;
+} */
+
+.loginbutton10{
+    display: flex;
+    flex-basis: 9%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .loginbutton .nextbutton2{
+    width: 20%;
+    height: 100%;
+} */
+.loginbutton10 .b{
+    width: 20%;
+    margin-right: 14%;
+    margin-top: 0%;
+    color: #AC66FE;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 700;
+    height: 100%;
+    border-radius: 50px;
+    border: none;
+}
+
+.inputclass2{
+    width: 50%;
+    height: 10%;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    align-self: center;
+}
+/* .password{
+    height: 10%;
+    margin-bottom: 25px;
+    border-radius: 50px;
+} */
+
+.inputclass2 input{
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background-color: white;
+    border: none;
+    padding-left: 20px;
+    outline: none;
+}
+
+/* .nextbutton button VscArrowRight{
+    position: relative;
+    top: 50%;
+    align-self: center;
+} */

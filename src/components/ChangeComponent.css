@@ -1,0 +1,193 @@
+.cost{
+    height: 100%;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    /* background-color: blueviolet; */
+}
+
+.cost h4{
+    color: rgb(0, 0, 0);
+    font-family: 'Poppins';
+    font-size: 20px;
+    /* background-color: red; */
+    width: 50%;
+    margin: 0%;
+}
+
+.changebutton{
+    width: 20%;
+    margin: 1%;
+    height: 2em;
+    font-size: medium;
+    background-color: #AC66FE;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.changebutton2{
+    width: 25%;
+    margin: 1%;
+    height: 2em;
+    font-size: medium;
+    background-color: #AC66FE;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.cost-left{
+    /* background-color: red; */
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.changecost{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* background-color: blueviolet; */
+}
+
+.changepic{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* background-color: blueviolet; */
+}
+
+.picchange{
+    /* border: 1px solid black; */
+    border-radius: 50px;
+    height: 5em;
+    width: 5em;
+    background-color: blueviolet;
+}
+
+/* .picchange h4{
+   
+    color: white;
+    font-size: medium;
+    font-family: 'Poppins';
+} */
+
+.changepassword{
+    align-items: center;
+    width: 100%;
+    /* background-color: blueviolet; */
+}
+
+
+.saveinput{
+    width: 60%;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saveinput56{
+    width: 60%;
+    margin-left: 30%;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saveimg{
+    width: auto;
+    margin: 1%;
+    height: 2em;
+    font-size: medium;
+    background-color: #827591;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    content: 'Upload'; 
+    display: none;
+}
+
+.saveimg2{
+    width: 20%;
+    margin: 1%;
+    height: 2em;
+    font-size: medium;
+    background-color: #AC66FE;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.saveimg2:hover{
+    cursor: pointer;
+}
+
+
+.saveimg::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  /* .saveimg:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  } */
+
+/* .inpupbaby{
+    border: none;
+    outline: 0;
+} */
+
+.inputchange{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.7%;
+    height: 100%;
+    width: 40%;
+    margin: 1%;
+}
+#imageName{
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 1.5%;
+    height: 2em;
+    /* background-color: #AC66FE; */
+}
+
+.picchange img{
+    border-radius: 50px;
+    /* border: 1px solid black; */
+    height: 5em;
+    width: 5em;
+}
+
+.ibox{
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputchange input{
+    width: 100%;
+    border: none;
+}
+
+.inputchange input:focus{
+    border: none;
+    outline: 0;
+}
