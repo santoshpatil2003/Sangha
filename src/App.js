@@ -16,7 +16,7 @@ import SignUp from './components/SignUp';
 import Community from './components/community';
 import CommunitySignUp from './components/CommunitySignUp';
 import InsideHome from './components/InsideHome';
-// import { auth } from "./components/Firebase";
+import { auth } from "./components/Firebase";
 // import { onAuthStateChanged } from "firebase/auth";
 import Navbar from './components/Navbar';
 import ProfileDp from './components/ProfileDp';
@@ -31,6 +31,7 @@ import Settingsuser from './components/Settingsuser';
 import { getuser } from './components/profiledata';
 // import ReactCircularLoader from 'react-circular-loader/dist';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import { onAuthStateChanged} from "firebase/auth";
 import 'react-circular-progressbar/dist/styles.css';
 // import {data} from './profiledata';
 // import {docsnap} from './profiledata';
@@ -147,55 +148,61 @@ function App() {
       console.log("error");
     }
     // console.log(id);
-
-    if(id !== null){
-      return (
-        <BrowserRouter>
-            <Routes>
-              <Route path='/' element={<InsideHome navbar = {navbar} datamiddle = {null} dataright = {Profiledp} lists = {true}></InsideHome>}/>
-              <Route path='signup' element={<SignUp></SignUp>}/>
-              {/* <Route path='community' element={<Community></Community>}/>
-              <Route path='/community/communitysignup' element={<CommunitySignUp></CommunitySignUp>}/> */}
-              <Route path='/userprofile' element={<InsideHome navbar = {navbar} dataright = {userprofileright} datamiddle = {userprofilemiddle} lists = {false}></InsideHome>}/>
-              <Route path='/Sanghaprofile' element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {sanghaprofilemiddle} lists = {false}></InsideHome>}/>
-              <Route path='/SanghaSettings' element={<InsideHome navbar = {navbar} datamiddle = {settings} dataright = {Profiledp} lists = {true}></InsideHome>}/>
-            </Routes> 
-        </BrowserRouter>
-        // <div className="App">
-        //       <InsideHome datamiddle = {null} dataright = {Profiledp} lists = {true}></InsideHome>
-        //   </div>
-          );
-    }else if(id === null && circle === true){
-      if(id === null && circle === false){
-        return (
-          <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<div className="App"><LogIn></LogIn></div>}/>
-                <Route path='community' element={<Community></Community>}/>
-                <Route path='/community/communitysignup' element={<CommunitySignUp></CommunitySignUp>}/>
-            </Routes>
-          </BrowserRouter>
-          );
-      }else if(circle === true){
-        try{
-          return (
-            <div className='app'>
-              <div className='bar' style={{ width: 50, height: 50 }}>
-                <CircularProgressbar  value={100} text={`${100}%`} />
+      try{
+        if(id === null && circle === true){
+          setTimeout(() => {
+            if((id === null || id !== null) && circle === true){
+              loading(circle = false)
+            }
+          },2000);
+          try{
+            return (
+              <div className='app'>
+                <div className='bar' style={{ width: 50, height: 50 }}>
+                  <CircularProgressbar  value={100} text={`${100}%`} />
+                </div>
+                
+                {/* <ReactCircularLoader primaryColor="#0D47A1" 
+                    secondaryColor="#e8f4f8" 
+                    diameter="100px" 
+                    primaryWidth="3px" 
+                    secondaryWidth="5px"></ReactCircularLoader> */}
               </div>
-              
-              {/* <ReactCircularLoader primaryColor="#0D47A1" 
-                  secondaryColor="#e8f4f8" 
-                  diameter="100px" 
-                  primaryWidth="3px" 
-                  secondaryWidth="5px"></ReactCircularLoader> */}
-            </div>
-          );
-        } catch (e){
-          console.log(e);
-        };
+            );
+          } catch (e){
+            console.log(e);
+          };
+        }else if(id !== null && (circle === false || circle === true)){
+          return (
+            <BrowserRouter>
+                <Routes>
+                  <Route path='/' element={<InsideHome navbar = {navbar} datamiddle = {null} dataright = {Profiledp} lists = {true}></InsideHome>}/>
+                  <Route path='signup' element={<SignUp></SignUp>}/>
+                  {/* <Route path='community' element={<Community></Community>}/>
+                  <Route path='/community/communitysignup' element={<CommunitySignUp></CommunitySignUp>}/> */}
+                  <Route path='/userprofile' element={<InsideHome navbar = {navbar} dataright = {userprofileright} datamiddle = {userprofilemiddle} lists = {false}></InsideHome>}/>
+                  <Route path='/Sanghaprofile' element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {sanghaprofilemiddle} lists = {false}></InsideHome>}/>
+                  <Route path='/SanghaSettings' element={<InsideHome navbar = {navbar} datamiddle = {settings} dataright = {Profiledp} lists = {true}></InsideHome>}/>
+                </Routes> 
+            </BrowserRouter>
+            // <div className="App">
+            //       <InsideHome datamiddle = {null} dataright = {Profiledp} lists = {true}></InsideHome>
+            //   </div>
+              );
+        } else if(id === null && circle === false){
+              return (
+                <BrowserRouter>
+                  <Routes>
+                      <Route path='/' element={<div className="App"><LogIn></LogIn></div>}/>
+                      <Route path='community' element={<Community></Community>}/>
+                      <Route path='/community/communitysignup' element={<CommunitySignUp></CommunitySignUp>}/>
+                  </Routes>
+                </BrowserRouter>
+                );
+          }
+      } catch(e){
+        console.log(`the uid is null ${e}.`);
       }
-    }
 }
 
 export default App;
