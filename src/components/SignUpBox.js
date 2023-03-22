@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import './SignUpBox.css'
-import {
-    // createBrowserRouter,
-    // RouterProvider,
-    // Route,
-    // Link,
-  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import SignUpBox2 from './SignUpBox2';
 //   import React, { useState } from 'react';
 // import { IconName } from "react-icons/bs";
 import { VscArrowRight } from "@react-icons/all-files/vsc/VscArrowRight";
 import { VscArrowLeft } from "@react-icons/all-files/vsc/VscArrowLeft";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ColorRing } from 'react-loader-spinner';
 import { auth } from "./Firebase";
 import { db } from "./Firebase";
 // import { doc,setDoc } from "firebase/firestore";
@@ -29,12 +25,14 @@ export default function SignUpBox() {
     let [dateofbirth, setdateofbirth] = useState("");
     let [password, setsetpassword] = useState("");
     let [confirmpassword, setconfirmpassword] = useState("");
+    let [signup, dosignup] = useState();
+    const navigate = useNavigate();
 
     const register = async () =>{
         try{
             if(password === confirmpassword){
-                const users = await createUserWithEmailAndPassword(auth,email,password);
-                users.then(async () => {
+                dosignup(signup = 0);
+                await createUserWithEmailAndPassword(auth,email,password).then(() =>{
                     setTimeout( async () => {
                         await setDoc(doc(db,"user",`${auth.currentUser.uid}`),{
                             "name" : name,
@@ -48,11 +46,16 @@ export default function SignUpBox() {
                             "profilepiclink": "",
                             "picurl": "",
                         }).then(()=>{
+                            dosignup(signup = 3);
+                            setTimeout(() => {
+                                navigate('/');
+                            }, 2000);
                             console.log("done");
                         });
                     }, 5000);
-                    // console.log(auth.currentUser.uid.toString);
+
                 });
+                    // console.log(auth.currentUser.uid.toString);
             }
         }catch(e){
             console.log(e.message);
@@ -106,7 +109,23 @@ export default function SignUpBox() {
                 </div>
                 <div className='loginbutton10'>
                     <button onClick={()=>setCount(count = false)} className='nextbutton10'><VscArrowLeft size={23}></VscArrowLeft></button>
-                    <button className='b' onClick={register}>Sign Up</button>
+                    {signup === 0? 
+                    <button className='b'>
+                        <ColorRing visible={true}
+                        height="40"
+                        width="40"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        colors={['#AC66FE','#AC66FE','#AC66FE','#AC66FE','#AC66FE']}></ColorRing>
+                    </button>: signup === 1?
+                    <button className='b'>
+                        done
+                    </button>:
+                    <button className='b' onClick={register}>
+                        Sign Up
+                    </button> 
+                }
                 </div>
                 </div>
             </div>

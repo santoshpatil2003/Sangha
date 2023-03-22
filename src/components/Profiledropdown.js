@@ -1,16 +1,22 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
 import {
   Link,
+  useNavigate,
 } from "react-router-dom";
 import './Profiledropdown.css'
 import {signOut} from "firebase/auth";
 import { auth } from "./Firebase";
 
 export default function Profiledropdown(props) {
+  let [signout2,dosignout] = useState(false)
+
+  const nav = useNavigate();
   
   const signout = () => {
     signOut(auth);
+    nav('/');
+    dosignout(signout2 = !signout2);
     console.log("done");
   }
 

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import './CommunitySignUpBox.css'
+import { useNavigate } from "react-router-dom";
 import { VscArrowRight } from "@react-icons/all-files/vsc/VscArrowRight";
 import { VscArrowLeft } from "@react-icons/all-files/vsc/VscArrowLeft";
+import { ColorRing } from 'react-loader-spinner';
 import { auth } from "./Firebase";
 import { db } from "./Firebase";
 import {setDoc,doc} from "firebase/firestore";
@@ -15,10 +17,13 @@ export default function CommunitySignUpBox() {
     // let [dateofbirth, setdateofbirth] = useState("");
     let [password, setsetpassword] = useState("");
     let [confirmpassword, setconfirmpassword] = useState("");
+    let [signup2, dosignup2] = useState();
+    const navigate2 = useNavigate();
 
     const register2 = async () =>{
         try{
             if(password === confirmpassword){
+                dosignup2(signup2 = 0);
                 await createUserWithEmailAndPassword(auth,email,password).then(async () => {
                     setTimeout( async () => {
                         await setDoc(doc(db,"user",`${auth.currentUser.uid}`),{
@@ -32,6 +37,10 @@ export default function CommunitySignUpBox() {
                             "profilepiclink": "",
                             "picurl": "",
                         }).then(()=>{
+                            dosignup2(signup2 = 3);
+                            setTimeout(() => {
+                                navigate2('/');
+                            }, 2000);
                             console.log("done");
                         });
                     }, 5000);
@@ -76,7 +85,23 @@ export default function CommunitySignUpBox() {
                 </div>
                 <div className='loginbutton10'>
                     <button onClick={()=>setCount(count = false)} className='nextbutton10'><VscArrowLeft size={23}></VscArrowLeft></button>
-                    <button className='b' onClick={register2}>Sign Up</button>
+                    {signup2 === 0? 
+                    <button className='b'>
+                        <ColorRing visible={true}
+                        height="40"
+                        width="40"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        colors={['#AC66FE','#AC66FE','#AC66FE','#AC66FE','#AC66FE']}></ColorRing>
+                    </button>: signup2 === 1?
+                    <button className='b'>
+                        done
+                    </button>:
+                    <button className='b' onClick={register2}>
+                        Sign Up
+                    </button> 
+                }
                 </div>
                 </div>
             </div>

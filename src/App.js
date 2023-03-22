@@ -16,7 +16,7 @@ import SignUp from './components/SignUp';
 import Community from './components/community';
 import CommunitySignUp from './components/CommunitySignUp';
 import InsideHome from './components/InsideHome';
-import { auth } from "./components/Firebase";
+// import { auth } from "./components/Firebase";
 // import { onAuthStateChanged } from "firebase/auth";
 import Navbar from './components/Navbar';
 import ProfileDp from './components/ProfileDp';
@@ -30,8 +30,9 @@ import Settings from './components/Settings';
 import Settingsuser from './components/Settingsuser';
 import { getuser } from './components/profiledata';
 // import ReactCircularLoader from 'react-circular-loader/dist';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import { onAuthStateChanged} from "firebase/auth";
+// import { CircularProgressbar } from 'react-circular-progressbar';
+// import { onAuthStateChanged} from "firebase/auth";
+import { ColorRing } from 'react-loader-spinner';
 import 'react-circular-progressbar/dist/styles.css';
 // import {data} from './profiledata';
 // import {docsnap} from './profiledata';
@@ -158,8 +159,17 @@ function App() {
           try{
             return (
               <div className='app'>
-                <div className='bar' style={{ width: 50, height: 50 }}>
-                  <CircularProgressbar  value={100} text={`${100}%`} />
+                <div className='bar'>
+                  {/* <CircularProgressbar  value={100} text={`${100}%`} /> */}
+                  <ColorRing
+                        visible={true}
+                        height="70"
+                        width="70"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        colors={['#AC66FE','#AC66FE','#AC66FE','#AC66FE','#AC66FE']}
+                    />                      
                 </div>
                 
                 {/* <ReactCircularLoader primaryColor="#0D47A1" 
@@ -177,7 +187,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                   <Route path='/' element={<InsideHome navbar = {navbar} datamiddle = {null} dataright = {Profiledp} lists = {true}></InsideHome>}/>
-                  <Route path='signup' element={<SignUp></SignUp>}/>
+                  {/* <Route path='/signup' element={<SignUp></SignUp>}/> */}
                   {/* <Route path='community' element={<Community></Community>}/>
                   <Route path='/community/communitysignup' element={<CommunitySignUp></CommunitySignUp>}/> */}
                   <Route path='/userprofile' element={<InsideHome navbar = {navbar} dataright = {userprofileright} datamiddle = {userprofilemiddle} lists = {false}></InsideHome>}/>
@@ -194,7 +204,9 @@ function App() {
                 <BrowserRouter>
                   <Routes>
                       <Route path='/' element={<div className="App"><LogIn></LogIn></div>}/>
-                      <Route path='community' element={<Community></Community>}/>
+                      <Route path='/signup' element={<SignUp></SignUp>}/>
+                      <Route path='/community/signup' element={<SignUp></SignUp>}/>
+                      <Route path='/community' element={<Community></Community>}/>
                       <Route path='/community/communitysignup' element={<CommunitySignUp></CommunitySignUp>}/>
                   </Routes>
                 </BrowserRouter>

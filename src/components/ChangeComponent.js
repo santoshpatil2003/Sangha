@@ -9,9 +9,9 @@ export default function ChangeComponent(props) {
      let [file2, fullfile] = useState("");
      let [upload, uploadcheck] = useState(false);
      let [newname, changetonewname] = useState("");
-     let [firstlettername, firstname] = useState("");
+    //  let [firstlettername, firstname] = useState("");
      const changeHandler = (event) => {
-        firstname(firstlettername = props.firstnameletter);
+        // firstname(firstlettername = props.firstnameletter);
 		namefile(file = event.target.files[0].name);
         fullfile(file2 = event.target.files[0]);
         console.log(file2);
