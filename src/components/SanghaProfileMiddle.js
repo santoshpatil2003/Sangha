@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import SanghaPopup from './SanghaPopup';
 import './SanghaProfileMiddle.css'
 import JoinCost from './JoinCost.js'
+import {getsanghadata} from './profiledata'
 
 export default function SanghaProfileMiddle(props) {
     const [show, setShow] = useState(false);
     const [modalShow, setModalShow] = useState(false);
-
+    let [sanghauser, sanghadata] = useState({});
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    useEffect(() => {
+        getsanghadata(props.uid,sanghadata,sanghauser);
+    },[])
+    console.log(sanghauser.sanghaname);
     return (
         <div className='middlebox2'>
             <main>
@@ -22,8 +27,8 @@ export default function SanghaProfileMiddle(props) {
                                 <img className='postdp22' src="https://pbs.twimg.com/profile_images/1414874230794031105/dL_AxaaQ_400x400.jpg" alt="Girl in a jacket"/>
                             </div>
                             <div className='named'>
-                                <div className='na2'><h4 className='name212'>{props.name}</h4></div>
-                                <div className='iddata2'><span className='idspan212'><h4 className='name212'>{props.nameid}</h4></span></div>
+                                <div className='na2'><h4 className='name212'>{sanghauser.sanghaname}</h4></div>
+                                <div className='iddata2'><span className='idspan212'><h4 className='name212'>{sanghauser.foundername}</h4></span></div>
                             </div>
                         </div>
                         { props.sangha === true?<div className='joinbutton'>0/400</div> :<button className='joinbutton' onClick={() => setModalShow(true)}>Join</button>}
@@ -38,7 +43,7 @@ export default function SanghaProfileMiddle(props) {
                     <SanghaPopup handleClose = {handleClose} handleShow = {handleShow} show = {show}></SanghaPopup>
                 </div>
                 <div className='no'>
-                    <JoinCost sanghaname = 'Beerbiceps' foundername = 'Ranveer Allahbadia' show={modalShow} onHide={() => setModalShow(false)}></JoinCost>
+                    <JoinCost sanghaname = {props.name} foundername = {props.nameid} show={modalShow} onHide={() => setModalShow(false)}></JoinCost>
                 </div>
             </main>
             {/* <div className='demo'></div> */}

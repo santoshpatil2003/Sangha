@@ -6,8 +6,9 @@
   }
 
 .linkname{
+  /* background-color: blue; */
   text-decoration: none;
-  height: 35%;
+  height: 30%;
 }
 
   .left-data{
@@ -25,6 +26,23 @@
     /* background-color: black; */
     border-radius: 50px;
     /* border: 1px solid black; */
+  }
+
+  .circle2{
+    width: 60px;
+    height: 60px;
+    background-color: violet;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0%;
+    /* border: 1px solid black; */
+  }
+
+  .circle2 h4{
+    margin-top: 5%;
+    color: white;
   }
 
   .circle img{

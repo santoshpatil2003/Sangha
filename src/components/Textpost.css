@@ -44,8 +44,9 @@
 	border-radius: 0%;
 	height: auto;
 	width: 100%;
-	font-family: 'Segoe UI';
-    font-weight: 600;
+    font-family: 'Poppins';
+	/* font-family: 'Segoe UI'; */
+    font-weight: 590;
     font-size: 100%;
 	flex-basis: 10px;
 	margin: 0%;

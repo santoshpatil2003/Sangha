@@ -32,6 +32,7 @@ import { getuser } from './components/profiledata';
 // import ReactCircularLoader from 'react-circular-loader/dist';
 // import { CircularProgressbar } from 'react-circular-progressbar';
 // import { onAuthStateChanged} from "firebase/auth";
+import { listAllUsers , listAllUsers2 } from './components/profiledata';
 import { ColorRing } from 'react-loader-spinner';
 import 'react-circular-progressbar/dist/styles.css';
 // import {data} from './profiledata';
@@ -126,21 +127,31 @@ let navbar = '';
 function App() {
   let data1 = useRef();
   let [user, userdata] = useState();
+  let [sanghausers, sanghausersdata] = useState([]);
+  let [alluser, allusers] = useState([]);
   let [id, userid] = useState(null);
   let [circle, loading] = useState(true);
 
 
     useEffect( () => {
+      let x = listAllUsers();
+      let y = listAllUsers2();
+      y.then((t)=>{
+        allusers(alluser = t);
+      })
+      x.then((t)=>{
+        sanghausersdata(sanghausers = t);
+      })
       getuser(user,data1,userdata,id,userid);
     }, []);
 
     try{
       // console.log(user['name']);
        profilecomponent = (<ProfileComponent profilename = 'Santosh Patil' profileid = 'Santoshpatil2003'></ProfileComponent>);
-       Profiledp = (<ProfileDp picurl = {user['picurl']} name = {user['Sangha'] === true? user['sanghaname']:user['name']} sangha = {user['Sangha']}   nameid = {user['username']}/>);
+       Profiledp = (<ProfileDp uid = {user['uid']} picurl = {user['picurl']} name = {user['Sangha'] === true? user['sanghaname']:user['name']} sangha = {user['Sangha']}   nameid = {user['username']}/>);
        userprofileright = (<UserProfileRight title = 'Messeges'/>);
-       userprofilemiddle = (<UserProfileMiddle name = {user['Sangha'] === true? user['sanghaname']:user['name']} nameid = {user['username']} />);
-       sanghaprofilemiddle = (<SanghaProfileMiddle name = {user['Sangha'] === true? user['sanghaname']:user['name']} sangha = {user['Sangha']} nameid = {user['username']}/>);
+       userprofilemiddle = (<UserProfileMiddle name = {user['Sangha'] === true? user['sanghaname']:user['name']} nameid = {user['username']} uid = {user['uid']} />);
+       sanghaprofilemiddle = (<SanghaProfileMiddle uid = {user['uid']} name = {user['Sangha'] === true? user['sanghaname']:user['name']} sangha = {user['Sangha']} nameid = {user['Sangha'] === true?user['foundername']:user['username']}/>);
        sanghaprofileright = (<UserProfileRight inside = {profilecomponent} title = 'Members'/>);
        settings = (user['Sangha'] === true? <Settings picurl = {user['picurl']} name = {user['sanghaname']}></Settings>: <Settingsuser picurl = {user['picurl']} name = {user['name']}></Settingsuser>);
        navbar = (<Navbar searchp = {profilecomponent} picurl = {user['picurl']}></Navbar>);
@@ -190,8 +201,19 @@ function App() {
                   {/* <Route path='/signup' element={<SignUp></SignUp>}/> */}
                   {/* <Route path='community' element={<Community></Community>}/>
                   <Route path='/community/communitysignup' element={<CommunitySignUp></CommunitySignUp>}/> */}
-                  <Route path='/userprofile' element={<InsideHome navbar = {navbar} dataright = {userprofileright} datamiddle = {userprofilemiddle} lists = {false}></InsideHome>}/>
-                  <Route path='/Sanghaprofile' element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {sanghaprofilemiddle} lists = {false}></InsideHome>}/>
+                  {alluser.map((y) => {
+                    let z = (<UserProfileMiddle name = {y['Sangha'] === true? y['sanghaname']:y['name']} nameid = {y['username']} uid = {y['uid']} />);
+                    return (
+                      <Route path={`/userprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {userprofileright} datamiddle = {z} lists = {false}></InsideHome>}/>
+                      // <Route path={`/Sanghaprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {z} lists = {false} uid = {y['uid']} ></InsideHome>}/>
+                    );
+                  })}
+                  {sanghausers.map((y) => {
+                    let z = (<SanghaProfileMiddle uid = {y['uid']} name = {y['Sangha'] === true? y['sanghaname']:y['name']} sangha = {y['Sangha']} nameid = {y['Sangha'] === true?y['foundername']:y['username']}/>);
+                    return (
+                      <Route path={`/Sanghaprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {z} lists = {false} uid = {y['uid']} ></InsideHome>}/>
+                    );
+                  })}
                   <Route path='/SanghaSettings' element={<InsideHome navbar = {navbar} datamiddle = {settings} dataright = {Profiledp} lists = {true}></InsideHome>}/>
                 </Routes> 
             </BrowserRouter>

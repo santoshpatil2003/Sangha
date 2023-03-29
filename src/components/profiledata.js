@@ -2,9 +2,9 @@ import { auth } from "./Firebase";
 import { db , storage } from "./Firebase";
 // import { uid } from "./components/Firebase";
 // import { doc,setDoc } from "firebase/firestore";
-import {getDoc,doc , setDoc, arrayUnion} from "firebase/firestore";
+import {getDoc,doc , setDoc, arrayUnion, collection, getDocs} from "firebase/firestore";
 // // import { async } from "@firebase/util";
-import { onAuthStateChanged} from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 // import { getStorage } from "firebase/storage";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -21,6 +21,15 @@ const getuser = async (user,data1,userdata,id,userid) => {
       }
     });
   }
+const getsanghadata = async ( uid , sanghadata , sanghauser ) =>{
+  try{
+    const data = doc(db, "user", `${uid}`);
+    const snapshot = await getDoc(data);
+    sanghadata(sanghauser = snapshot.data());
+} catch(e){
+  console.log(`the uid is null ${e}.`);
+}
+}
 
   // const storage = getStorage();
   // const imageRef = ref(storage, 'images');
@@ -49,22 +58,41 @@ const uploadpic = (file) => {
   });
 }
 
-const listAllUsers = (nextPageToken) => {
+const listAllUsers = async () => {
   // List batch of users, 1000 at a time.
-  auth
-  .listUsers(1000, nextPageToken)
-    .then((listUsersResult) => {
-      listUsersResult.users.forEach((userRecord) => {
-        console.log('user', userRecord.toJSON());
-      });
-      if (listUsersResult.pageToken) {
-        // List next batch of users.
-        listAllUsers(listUsersResult.pageToken);
+  let list = [];
+  try{
+    const data = collection(db,'user');
+    const snapshot = await getDocs(data)
+    snapshot.forEach((e) => {
+      if(e.data()['Sangha']){
+        // console.log(e.data()['Sangha']);
+        list.push(e.data());
       }
     })
-    .catch((error) => {
-      console.log('Error listing users:', error);
-    });
+} catch(e){
+  console.log(`the uid is null ${e}.`);
+}
+  console.log(list)
+  return list;
+};
+
+const listAllUsers2 = async () => {
+  // List batch of users, 1000 at a time.
+  let list = [];
+  try{
+    const data = collection(db,'user');
+    const snapshot = await getDocs(data)
+    snapshot.forEach((e) => {
+      
+        // console.log(e.data()['Sangha']);
+        list.push(e.data());
+    })
+} catch(e){
+  console.log(`the uid is null ${e}.`);
+}
+  console.log(list)
+  return list;
 };
 
 const uploadtweet =  async (heading,body) => {
@@ -114,4 +142,6 @@ export {changename};
 export {uploadpic};
 export {uploadtweet};
 export {listAllUsers};
+export {listAllUsers2};
+export {getsanghadata};
 

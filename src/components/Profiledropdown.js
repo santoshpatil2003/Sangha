@@ -20,9 +20,9 @@ export default function Profiledropdown(props) {
     console.log("done");
   }
 
-  if(props.picurl === ""){
+  if(props.picurl === ''){
     return (
-      <Dropdown>
+      <Dropdown className='droptop'>
         <Dropdown.Toggle variant='tertery' className='drop'>
               <img className='u' src= {props.picurl} alt = "" onError = {() => {console.log("error img")}}/>
               {/* <div className='usa'></div> */}
@@ -50,7 +50,7 @@ export default function Profiledropdown(props) {
     );
   }else{
     return (
-      <Dropdown>
+      <Dropdown className='droptop'>
         <Dropdown.Toggle variant='tertery' className='drop'>
               <img className='u' src= {props.picurl} alt="Girl in a jacket"/>
               {/* <Link className='li' to='/'>

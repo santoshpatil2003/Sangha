@@ -1,7 +1,7 @@
 .sanghadata1212{
     height: fit-content;
     /* background-color: blue; */
-    margin: 2%;
+    padding: 2%;
     display: flex;
     /* justify-content: center; */
     /* align-items: center; */
@@ -11,6 +11,11 @@
   text-decoration: none;
   /* height: 100%; */
 }
+
+.linkname1212:hover{
+  background-color: black;
+}
+
 
   .left-data1212{
     height: 80%;
@@ -26,9 +31,18 @@
   .circle1212{
     width: 50px;
     height: 50px;
-    /* background-color: black; */
+    background-color: violet;
     border-radius: 50px;
-    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+  }
+
+  .circle1212 h4{
+    margin-top: 10%;
+    color: white;
+    font-size: small;
   }
 
   .right-data1212{

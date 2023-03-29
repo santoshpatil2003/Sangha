@@ -13,7 +13,7 @@ export default function InsideHome(props) {
         {props.navbar}
       <div className="body10">
         <LeftContainer></LeftContainer>
-        <MiddleContainer insidecontent = {props.datamiddle} ></MiddleContainer>
+        <MiddleContainer insidecontent = {props.datamiddle} uid = {props.uid} ></MiddleContainer>
         <RightContainer insidecontent = {props.dataright} lists = {props.lists}></RightContainer>
       </div> 
     </div>

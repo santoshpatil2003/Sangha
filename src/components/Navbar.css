@@ -60,7 +60,7 @@
 
 .dropdown2{
     width: 42%;
-    height: 60%;
+    height: fit-content;
     z-index: 1;
     background-color: white;
     /* border-left: 1px solid gray;
@@ -136,6 +136,10 @@
 /* .li{
     text-decoration: none;
 } */
+
+.l:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
 
 
 

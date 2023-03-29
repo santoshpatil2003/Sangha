@@ -6,8 +6,9 @@ export default function ProfileDp(props) {
   if(props.picurl === ""){
     return (
       <div className='profile'>
-        <Link to = {props.sangha === false? '/userprofile':'/sanghaprofile'} className='npm'>
+        <Link to = {props.sangha === false? `/userprofile/${props.uid}`:`/sanghaprofile/${props.uid}`} className='npm'>
           <div className='dp'>
+            <h2 className='firstletter'>{props.name.split('')[0]}</h2>
             {/* <img className='dp' src= {props.picurl} alt="Girl in a jacket"/> */}
           </div>
           <div className='namedata213'>
@@ -20,7 +21,7 @@ export default function ProfileDp(props) {
   }else{
     return (
       <div className='profile'>
-        <Link to = {props.sangha === false? '/userprofile':'/sanghaprofile'} className='npm'>
+        <Link to = {props.sangha === false? `/userprofile/${props.uid}`:`/sanghaprofile/${props.uid}`} className='npm'>
           <div className='dp'>
             <img className='dp' src= {props.picurl} alt="Girl in a jacket"/>
           </div>
