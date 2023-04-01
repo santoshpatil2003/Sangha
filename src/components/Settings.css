@@ -23,8 +23,41 @@
     border: 1px solid #F6F6F2;
 }
 
+.accitem2{
+    border-radius: 0%;
+    height: 50px;
+    border: 1px solid #F6F6F2;
+    display: flex;
+}
+
+.header h4{
+    font-size: medium;
+    font-weight: 400;
+    margin-left: 3.5%;
+}
+
+.header{
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .accitembody{
     display: flex;
     align-items: center;
     width: 100%;
+}
+
+.switch{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* background-color: burlywood; */
+}
+
+.sw{
+    margin-right: 0%;
 }

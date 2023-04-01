@@ -25,7 +25,7 @@ export default function Navbar(props) {
       <div className="nav-bar">
         <nav>
         {/* <div className="search"><input type="text" onFocus={() => {searchf(search = true)}} onBlur = {() => {searchf(search = false)}} /><div className='space'></div><button>Search</button></div> */}
-          <div className="search"><input type="text" onFocus={() => {searchf(search = true)}} onBlur = {() => {searchf(search = false)}} /><div className='space'></div><button>Search</button></div>
+          <div className="search"><input type="text" onFocus={() => {searchf(search = true)}} /><div className='space'></div><button>Search</button></div>
           <div className='profilecircle'>
             <div className='p' >
               <div className='pc'>
