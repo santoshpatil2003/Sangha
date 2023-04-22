@@ -4,16 +4,20 @@ import React,{useState , useEffect} from 'react';
 import './RightContainer.css';
 import Sanghalistcomponent from './Sanghalistcomponent';
 import { listAllUsers } from './profiledata';
+import { getsanghamembers } from './profiledata';
+import ProfileComponent from './ProfileComponent';
 
 export default function RightContainer(props) {
   let [add, setAdd] = useState([]);
+  // let [memberlist, members] = useState([]);
 
   useEffect(() => {
     // console.log(typeof a)
     let a = listAllUsers();
     a.then((t)=>{
       setAdd(add = t);
-    })
+    });
+    // getsanghamembers(members,memberlist,props.uid);
   },[]);
 
 

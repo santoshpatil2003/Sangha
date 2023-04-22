@@ -33,6 +33,7 @@ export default function CommunitySignUpBox() {
                             "password": password,
                             "Sangha" : true,
                             "members" : [{}],
+                            "maxmember": '400',
                             "friendsinsangha" : [{}],
                             "profilepiclink": "",
                             "picurl": "",

@@ -204,14 +204,15 @@ function App() {
                   {alluser.map((y) => {
                     let z = (<UserProfileMiddle name = {y['Sangha'] === true? y['sanghaname']:y['name']} nameid = {y['username']} uid = {y['uid']} />);
                     return (
-                      <Route path={`/userprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {userprofileright} datamiddle = {z} lists = {false}></InsideHome>}/>
+                      <Route key={y['uid']} path={`/userprofile/${y['uid']}`} element={<InsideHome uid = {y['uid']} navbar = {navbar} dataright = {userprofileright} datamiddle = {z} lists = {false}></InsideHome>}/>
                       // <Route path={`/Sanghaprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {z} lists = {false} uid = {y['uid']} ></InsideHome>}/>
                     );
                   })}
                   {sanghausers.map((y) => {
-                    let z = (<SanghaProfileMiddle uid = {y['uid']} name = {y['Sangha'] === true? y['sanghaname']:y['name']} sangha = {y['Sangha']} nameid = {y['Sangha'] === true?y['foundername']:y['username']}/>);
+                    let z = (<SanghaProfileMiddle user = {user['uid'] === y['uid']? true : false} uid = {y['uid']} name = {y['Sangha'] === true? y['sanghaname']:y['name']} sangha = {y['Sangha']} nameid = {y['Sangha'] === true?y['foundername']:y['username']}/>);
+                    let t = (sanghaprofileright = (<UserProfileRight  inside = {profilecomponent} title = 'Members' uid = {y['uid']} />));
                     return (
-                      <Route path={`/Sanghaprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {z} lists = {false} uid = {y['uid']} ></InsideHome>}/>
+                      <Route  key={y['uid']} path={`/Sanghaprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {z} lists = {false} uid = {y['uid']} ></InsideHome>}/>
                     );
                   })}
                   <Route path='/SanghaSettings' element={<InsideHome navbar = {navbar} datamiddle = {settings} dataright = {Profiledp} lists = {true}></InsideHome>}/>

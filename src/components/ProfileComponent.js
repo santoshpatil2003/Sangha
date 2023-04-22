@@ -11,7 +11,7 @@ export default function ProfileComponent(props) {
         <div className='sanghadata1212'>
             <div className='left-data1212'>
               <div className='circle1212'>
-                <h4>{props.profilename.split('')[0]}</h4>
+                {props.profilename === undefined?<div></div>:<h4>{props.profilename.split('')[0]}</h4>}
               </div>
             </div>
             <div className='right-data1212'>

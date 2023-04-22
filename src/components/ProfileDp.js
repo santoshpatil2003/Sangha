@@ -6,7 +6,7 @@ export default function ProfileDp(props) {
   if(props.picurl === ""){
     return (
       <div className='profile'>
-        <Link to = {props.sangha === false? `/userprofile/${props.uid}`:`/sanghaprofile/${props.uid}`} className='npm'>
+        <Link to = {props.sangha === false? `/userprofile/${props.uid}`:`/Sanghaprofile/${props.uid}`} className='npm'>
           <div className='dp'>
             <h2 className='firstletter'>{props.name.split('')[0]}</h2>
             {/* <img className='dp' src= {props.picurl} alt="Girl in a jacket"/> */}

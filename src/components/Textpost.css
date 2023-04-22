@@ -10,6 +10,7 @@
 .layertop{
     /* background-color: blue; */
     height: 30%;
+    display: flex;
 }
 
 .writerinfo{
@@ -23,7 +24,7 @@
 
 .writerdp{
     height: 45px;
-    width: 45px;
+    /* width: 45px; */
     /* background-color: burlywood; */
     border-radius: 50px;
     margin-left: 3%;
@@ -33,11 +34,76 @@
 .writernamebox{
     /* background-color: chartreuse; */
     width: fit-content;
+    margin-left: 2%;
     height: 50px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+}
+.w{
+    display: flex;
+}
+.three{
+    /* background-color: bisque; */
+    color: rgba(0, 0, 0, 0.4);
+    /* height: fit-content; */
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2%;
+    align-items: center;
+    width: 13%;
+}
+
+.DTOP{
+    background-color: bisque;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ddrop{
+    z-index: 1;
+    height: fit-content;
+    top: 35px;
+    right: 2.5%;
+    width: 13%;
+    /* background-color: blueviolet; */
+    position: absolute;    
+}
+
+.dmenu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.dmenu:hover{
+    cursor: pointer;
+    background-color: #F6F6F2;
+}
+
+.dmenu h4{
+    font-family: 'Poppins';
+    font-size: 15px;
+    margin: 2%;
+}
+
+.sel{
+    border: none;
+}
+
+.three:hover{
+    color: black;
+    cursor: pointer;
+}
+
+.wdp{
+    display: flex;
+    align-items: center;
+    /* background-color: brown; */
+    width: 87%;
 }
 
 .communityname{

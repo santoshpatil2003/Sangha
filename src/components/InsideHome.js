@@ -14,7 +14,7 @@ export default function InsideHome(props) {
       <div className="body10">
         <LeftContainer></LeftContainer>
         <MiddleContainer insidecontent = {props.datamiddle} uid = {props.uid} ></MiddleContainer>
-        <RightContainer insidecontent = {props.dataright} lists = {props.lists}></RightContainer>
+        <RightContainer insidecontent = {props.dataright} lists = {props.lists} uid = {props.uid}></RightContainer>
       </div> 
     </div>
   )

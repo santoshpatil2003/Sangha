@@ -5,8 +5,14 @@ import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import './JoinCost.css'
+import { joining } from './profiledata';
 
 export default function JoinCost(props) {
+
+  const join = () =>{
+    joining(props.uid,props.onHide);
+  }
+
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -43,7 +49,7 @@ export default function JoinCost(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button className='B1' onClick={props.onHide}>Not today</Button>
-        <Button className='B1' onClick={props.onHide}>Join</Button>
+        <Button className='B1' onClick={join}>Join</Button>
       </Modal.Footer>
     </Modal>
   );
