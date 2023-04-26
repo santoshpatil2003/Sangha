@@ -8,7 +8,10 @@
   }
 
   .addcircle{
-    background-color: rgba(0, 0, 0, 0.1);
+    /* margin-bottom: 5%; */
+    background-color: violet;
+    font-size: larger;
+    color: white;
     padding: 0%;
     max-height: 55px ;
     max-width: 55px;
@@ -22,9 +25,46 @@
     align-items: center;
   }
 
-  .addcircle:hover{
+  .addcircle21{
+    /* margin-bottom: 5%; */
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: larger;
+    color: white;
+    padding: 0%;
+    max-height: 55px ;
+    max-width: 55px;
+    min-height: 50px;
+    min-width: 50px;
+    height: 9.5vh;
+    width: 9.5vb;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .addcircle img{
+    padding: 0%;
+    max-height: 55px ;
+    max-width: 55px;
+    min-height: 50px;
+    min-width: 50px;
+    height: 9.5vh;
+    width: 9.5vb;
+    border-radius: 50px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+  }
+
+  .addcircle21:hover{
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .addcircle:hover{
+    cursor: pointer;
+    /* background-color: rgba(0, 0, 0, 0.15); */
   }
 
   .addcircleinside{

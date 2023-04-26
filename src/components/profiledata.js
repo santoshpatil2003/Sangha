@@ -12,7 +12,7 @@ const getsanghamembers = async (memberlist,members,uid) =>{
     const data = doc(db, "user", `${uid}`);
     await getDoc(data).then((d) => {
       // console.log(d.data());
-      console.log(d.data()['members']);
+      // console.log(d.data()['members']);
        members(memberlist =  d.data()['members']);
     });
 }
@@ -43,7 +43,7 @@ const getsanghadata = async ( uid , sanghadata , sanghauser ) =>{
 const useruid = (uid,uids,useruid) =>{
   onAuthStateChanged(auth, async (currentUser) => {
     console.log(currentUser.uid);
-    if(currentUser.uid == useruid){
+    if(currentUser.uid === useruid){
       uids(uid = true);
     }else{
       uids(uid = false);
@@ -93,9 +93,41 @@ const listAllUsers = async () => {
 } catch(e){
   console.log(`the uid is null ${e}.`);
 }
-  console.log(list)
   return list;
 };
+
+const joined = (joined, join , uid) =>{
+  onAuthStateChanged(auth, async (currentUser) => {
+    const data = doc(db, "user", `${currentUser.uid}`);
+    // const snapshot = await getDoc(data);
+    // const data = doc(db, "user", `${currentUser.uid}/content/tweet`);
+    // const snapshot = await setDoc(data,{tweets:arrayUnion({"heading" : `${heading}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`})},{merge: true});
+    await getDoc(data).then((e) => {
+        e.data()['memberof'].forEach(async (d) => {
+          let id = d['uid'];
+          if(uid === id){
+            join(joined = true);
+          }
+        });
+    });
+    // snapshot.then((r)=>{
+    //   console.log(`uploaded the url too  ${r}`);
+    // })
+});
+}
+
+const leave = (picurl,foundername,sanghaname,uid,onhide,joined,join) =>{
+  onAuthStateChanged(auth, async (currentUser) => {
+    const data2 = doc(db, "user", `${currentUser.uid}`);
+    await updateDoc(data2,{memberof:arrayRemove({"picurl": `${picurl}`,"foundername" : `${foundername}` ,"sanghaname":`${sanghaname}`,"uid": `${uid}`})});
+    const data = doc(db, "user", `${uid}`);
+    await getDoc(data2).then( async (e)=>{
+      await updateDoc(data,{members:arrayRemove({"picurl": `${e.data()['picurl']}`,"name" : `${e.data()['name']}` ,"username":`${e.data()['username']}`,"uid": `${currentUser.uid}`})});
+    });
+    onhide();
+    join(joined = false);
+  });
+}
 
 const listAllUsers2 = async () => {
   // List batch of users, 1000 at a time.
@@ -111,8 +143,23 @@ const listAllUsers2 = async () => {
 } catch(e){
   console.log(`the uid is null ${e}.`);
 }
-  console.log(list)
   return list;
+};
+
+const listjoinedsangha = async (lists,list) => {
+  // List batch of users, 1000 at a time.
+  // let list2 = [];
+  onAuthStateChanged(auth, async (currentUser) => {
+    try{
+      const data = doc(db,'user',`${currentUser.uid}`);
+      await getDoc(data).then((e) => {
+            list(lists = e.data()['memberof']);
+      })
+    } catch(e){
+      console.log(`the uid is null ${e}.`);
+    }
+  });
+  // return list2;
 };
 
 const uploadtweet =  async (heading,body) => {
@@ -121,7 +168,7 @@ const uploadtweet =  async (heading,body) => {
           const data2 = doc(db, "user", `${currentUser.uid}`);
           const snapshot2 = await getDoc(data2);
           const data = doc(db, "user", `${currentUser.uid}/content/tweet`);
-          const snapshot = await setDoc(data,{tweets:arrayUnion({"heading" : `${heading}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`})},{merge: true});
+          await setDoc(data,{tweets:arrayUnion({"heading" : `${heading}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`})},{merge: true});
           await getDoc(data2).then((e) => {
               e.data()['members'].forEach(async (d) => {
                 let id = d['uid'];
@@ -159,28 +206,41 @@ const deletetweet =  async (heading,body,date) => {
   });
 }
 
-const joining =  async (sanghauid,onhide) => {
-  let date = `${new Date(Date.now()).getDate()}/${new Date(Date.now()).getMonth() + 1}/${new Date(Date.now()).getFullYear()}`;
+const joining =  async (sanghauid,onhide,joined,join) => {
+  // let date = `${new Date(Date.now()).getDate()}/${new Date(Date.now()).getMonth() + 1}/${new Date(Date.now()).getFullYear()}`;
   onAuthStateChanged(auth, async (currentUser) => {
         const data2 = doc(db, "user", `${sanghauid}`);
         const data = doc(db, "user", `${currentUser.uid}`);
         await getDoc(data).then(async (d) => {
-          await setDoc(data2,{members:arrayUnion({"uid" : `${currentUser.uid}`,"name": `${d.data()['name']}`, "username" : `${d.data()['username']}`})},{merge: true});
+          await setDoc(data2,{members:arrayUnion({"picurl": `${d.data()['picurl']}`,"uid" : `${currentUser.uid}`,"name": `${d.data()['name']}`, "username" : `${d.data()['username']}`})},{merge: true});
         });
         await getDoc(data2).then(async (d)=>{
-          await setDoc(data,{memberof:arrayUnion({"uid" : `${sanghauid}`,"sanghaname": `${d.data()['sanghaname']}`, "foundername" : `${d.data()['foundername']}`})},{merge: true});
+          await setDoc(data,{memberof:arrayUnion({"picurl": `${d.data()['picurl']}`,"uid" : `${sanghauid}`,"sanghaname": `${d.data()['sanghaname']}`, "foundername" : `${d.data()['foundername']}`})},{merge: true});
         });
-        onhide()
+        onhide();
+        join(joined = true);
         // snapshot.then((r)=>{
         //   console.log(`uploaded the url too  ${r}`);
         // })
   });
 }
 
-const gettweets =  async (tweet,tweets,uid) => {
-  let date = `${new Date(Date.now()).getDate()}/${new Date(Date.now()).getMonth() + 1}/${new Date(Date.now()).getFullYear()}`;
-  const data = doc(db, "user", `${uid}/content/tweet`);
-  const snapshot = await getDoc(data);
+const gettweets =  async (tweet,tweets) => {
+  onAuthStateChanged(auth, async (currentUser) => {
+    const data = doc(db, "user", `${currentUser.uid}/content/tweet`);
+    const snapshot = await getDoc(data);
+  try {
+    tweets(tweet = await snapshot.data()['tweets']);
+    console.log(snapshot.data()['tweets'][0]['body']);
+  } catch (error) {
+    console.log("undedined name tweets");
+  }
+});
+}
+
+const getsanghatweets =  async (tweet,tweets,uid) => {
+    const data = doc(db, "user", `${uid}/content/tweet`);
+    const snapshot = await getDoc(data);
   try {
     tweets(tweet = await snapshot.data()['tweets']);
     console.log(snapshot.data()['tweets'][0]['body']);
@@ -217,13 +277,17 @@ const changename = (newname) => {
 }
 
 export {getuser};
+export {listjoinedsangha};
 export {useruid};
 export {joining};
+export {leave};
+export {joined};
 export {changename};
 export {uploadpic};
 export {uploadtweet};
 export {deletetweet};
 export {gettweets};
+export {getsanghatweets};
 export {listAllUsers};
 export {listAllUsers2};
 export {getsanghadata};

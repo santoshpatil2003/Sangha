@@ -26,7 +26,7 @@ export default function Sanghalistcomponent(props) {
     )
 
   }else{
-    console.log(props.uid)
+    // console.log(props.uid)
     return (
       <Link to={`/Sanghaprofile/${props.uid}`} className='linkname'>
         <div className='sanghadata'>

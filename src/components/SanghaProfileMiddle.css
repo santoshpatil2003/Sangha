@@ -39,6 +39,23 @@
     position: relative;
     z-index: 0;
 }
+
+.dp123{
+    background-color: violet;
+    height: 150px;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    width: 150px;
+    font-size: 3rem;
+    color: white;
+    /* bottom: 75px; */
+    /* left: 40px; */
+    /* position: relative;
+    z-index: 0; */
+}
 .postdp22{
     /* background-color: blue; */
     height: 150px;

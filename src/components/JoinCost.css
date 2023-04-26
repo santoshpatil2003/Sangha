@@ -89,8 +89,20 @@
     font-size: larger;
   }
 
+  .money2{
+    color: black;
+    font-family: 'Poppins';
+    font-size: medium;
+  }
+
   .col{
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid black; */
   }
+
+  /* .col2{
+    padding: 0%;
+    border: 1px solid black;
+  } */

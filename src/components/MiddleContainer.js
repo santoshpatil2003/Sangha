@@ -12,7 +12,7 @@ export default function MiddleContainer(props) {
   const [tw , tws] = useState([]); 
 
   useEffect(() => {
-    gettweets(tw,tws);
+    gettweets(tw,tws,props.uid);
   },[]);
 
   return props.insidecontent === null?(

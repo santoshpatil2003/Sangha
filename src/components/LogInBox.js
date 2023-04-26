@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import './LogInBox.css';
 import { auth } from "./Firebase";
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LogInBox() {
-
+    const nav = useNavigate();
     let [email2, setemail2] = useState("");
     let [password2, setsetpassword2] = useState("");
 
     const login = async () =>{
         try{
             await signInWithEmailAndPassword(auth,email2,password2).then(() => {
+                nav('/home');
                 console.log("done");
             });
         }catch(e){

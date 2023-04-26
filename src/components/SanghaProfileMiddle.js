@@ -2,14 +2,16 @@ import React, { useState , useEffect } from 'react'
 import SanghaPopup from './SanghaPopup';
 import './SanghaProfileMiddle.css'
 import JoinCost from './JoinCost.js'
-import {getsanghadata , gettweets} from './profiledata'
+import {getsanghadata , getsanghatweets} from './profiledata'
 import Textpost from './Textpost'
 import { totalmembers } from './profiledata';
 import { useruid } from './profiledata';
+import { joined } from './profiledata';
 
 
 export default function SanghaProfileMiddle(props) {
     let [totalmem,totalmember] = useState();
+    let [joined2,join2] = useState(false);
     const [show, setShow] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     let [uid,uids] = useState(false);
@@ -19,14 +21,16 @@ export default function SanghaProfileMiddle(props) {
     const handleShow = () => setShow(true);
     useEffect(() => {
         getsanghadata(props.uid,sanghadata,sanghauser);
-        gettweets(tweet,tweets,props.uid);
+        getsanghatweets(tweet,tweets,props.uid);
         console.log(tweet);
         useruid(uid,uids,props.uid);
-        console.log(uid);
-        console.log(props.uid);
+        // console.log(uid);
+        // console.log(props.uid);
+        joined(joined2,join2,props.uid)
         if(props.sangha === true){
             totalmem = totalmembers(props.uid,totalmem,totalmember);
         }
+         console.log(joined2);
     },[])
     console.log(sanghauser.sanghaname);
     return (
@@ -39,14 +43,14 @@ export default function SanghaProfileMiddle(props) {
                     <div className='usernamedp2'>
                         <div className='usernamedp21'>
                             <div className='postdp2'>
-                                <img className='postdp22' src="https://pbs.twimg.com/profile_images/1414874230794031105/dL_AxaaQ_400x400.jpg" alt="Girl in a jacket"/>
+                               {props.picurl === (undefined || null || "")?<div className='dp123'>{sanghauser.sanghaname.split('')[0]}</div>:<img className='postdp22' src = {`${props.picurl}`} alt="Girl in a jacket"/>}
                             </div>
                             <div className='named'>
                                 <div className='na2'><h4 className='name212'>{sanghauser.sanghaname}</h4></div>
                                 <div className='iddata2'><span className='idspan212'><h4 className='name212'>{sanghauser.foundername}</h4></span></div>
                             </div>
                         </div>
-                        { props.sangha === true && props.user === true?<div className='joinbutton'>{`${totalmem}`}</div> :<button className='joinbutton' onClick={() => setModalShow(true)}>Join</button>}
+                        { props.sangha === true && props.user === true?<div className='joinbutton'>{`${totalmem}`}</div>: joined2 === true? <button className='joinbutton' onClick={() => setModalShow(true)}>Leave</button>  :<button className='joinbutton' onClick={() => setModalShow(true)}>Join</button>}
                     </div>
                 </div>
                 <div className='check'>
@@ -58,7 +62,7 @@ export default function SanghaProfileMiddle(props) {
                     <SanghaPopup handleClose = {handleClose} handleShow = {handleShow} show = {show}></SanghaPopup>
                 </div>
                 <div className='no'>
-                    {props.sangha === true && props.user === false?<JoinCost uid = {props.uid} sanghaname = {props.name} foundername = {props.nameid} show={modalShow} onHide={() => setModalShow(false)}></JoinCost>:<div></div>}
+                    {(props.sangha === true && props.user === false && joined2 === false)?<JoinCost joined = {joined2} joins = {join2} uid = {props.uid} sanghaname = {props.name} join = {false} foundername = {props.nameid} show={modalShow} onHide={() => setModalShow(false)}></JoinCost>: (props.sangha === true && props.user === false && joined2 === true)? <JoinCost uid = {props.uid} joined = {joined2} joins = {join2} sanghaname = {props.name} foundername = {props.nameid} show={modalShow} onHide={() => setModalShow(false)}></JoinCost>:<div></div>}
                 </div>
                 <div className='bottompost'>
                     {tweet.map((d , index) => {

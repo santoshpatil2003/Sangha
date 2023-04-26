@@ -7,7 +7,7 @@ export default function Sanghaaddprofile(props) {
     if(props.add === true){
         return (
             <div className='addsangha'>
-                  <div className='addcircle'>
+                  <div className='addcircle21'>
                     <VscAdd className='addcircleinside' size={30}></VscAdd>
                   </div>
             </div>
@@ -15,7 +15,7 @@ export default function Sanghaaddprofile(props) {
     }else{
         return (
             <div className='addsangha'>
-                  <div className='addcircle'></div>
+                <div className='addcircle'>{props.picurl === ( undefined || null || "" )?<div className='addcircle'>{props.sanghaname.split('')[0]}</div>:<img src = {`${props.picurl}`} alt='error'/>}</div>
             </div>
           ) 
     }
