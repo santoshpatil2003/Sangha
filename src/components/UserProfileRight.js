@@ -8,6 +8,7 @@ export default function UserProfileRight(props) {
 
   useEffect(()=>{
     getsanghamembers(memberlist,members,props.uid);
+    // console.log(memberlist)
   },[]);
 
   // const profilecomponent = (<ProfileComponent profilename = 'Santosh Patil' profileid = 'Santoshpatil2003'></ProfileComponent>);
@@ -18,14 +19,21 @@ export default function UserProfileRight(props) {
       </div>
       <div className='lis'>
           {/* {props.inside} */}
-          { memberlist.length === 0? <div></div> : memberlist.map((m)=>{
+          { memberlist.length === 0? <div></div> : memberlist?.map((m)=>{
                 return (
                   <div className='s' key={m['sanghaname']}>
                       {/* <Sanghalistcomponent sanghaname = {m['sanghaname']} uid = {m['uid']} foundername = {m['foundername']}></Sanghalistcomponent> */}
-                      <ProfileComponent profilename = {m['name'] } uid = {m['uid']} profileid = {m['username']}></ProfileComponent>
+                      <ProfileComponent sangha = {false} profilename = {m['name'] } uid = {m['uid']} profileid = {m['username']}></ProfileComponent>
                 </div>
                 );
           })}
+          {/* <ProfileComponent profilename = "Sangha" uid = "vIcwqcF4WNVm75xqwJjDn15mUQr2" profileid = "Tejas"></ProfileComponent>
+          <ProfileComponent profilename = "Sangha" uid = "vIcwqcF4WNVm75xqwJjDn15mUQr2" profileid = "Tejas"></ProfileComponent>
+          <ProfileComponent profilename = "Sangha" uid = "vIcwqcF4WNVm75xqwJjDn15mUQr2" profileid = "Tejas"></ProfileComponent>
+          <ProfileComponent profilename = "Sangha" uid = "vIcwqcF4WNVm75xqwJjDn15mUQr2" profileid = "Tejas"></ProfileComponent>
+          <ProfileComponent profilename = "Sangha" uid = "vIcwqcF4WNVm75xqwJjDn15mUQr2" profileid = "Tejas"></ProfileComponent>
+          <ProfileComponent profilename = "Sangha" uid = "vIcwqcF4WNVm75xqwJjDn15mUQr2" profileid = "Tejas"></ProfileComponent>
+          <ProfileComponent profilename = "Sangha" uid = "vIcwqcF4WNVm75xqwJjDn15mUQr2" profileid = "Tejas"></ProfileComponent> */}
       </div>
       
     </div>

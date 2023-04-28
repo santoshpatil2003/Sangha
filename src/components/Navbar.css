@@ -71,16 +71,16 @@
     top: 46.5px;
     position: absolute;
     left: 25%;
-    overflow-y:auto
+    overflow-y:auto;
 }
 
-.dropdown2::-webkit-scrollbar-thumb{
+/* .dropdown2::-webkit-scrollbar-thumb{
     background: black;
 }
 
 .dropdown2::-webkit-scrollbar-thumb:hover{
     background-color: red;
-}
+} */
 
 .seee{
     display: flex;

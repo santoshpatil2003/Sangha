@@ -21,6 +21,7 @@ export default function SanghaProfileMiddle(props) {
     const handleShow = () => setShow(true);
     useEffect(() => {
         getsanghadata(props.uid,sanghadata,sanghauser);
+        console.log(props.uid);
         getsanghatweets(tweet,tweets,props.uid);
         console.log(tweet);
         useruid(uid,uids,props.uid);
@@ -43,7 +44,7 @@ export default function SanghaProfileMiddle(props) {
                     <div className='usernamedp2'>
                         <div className='usernamedp21'>
                             <div className='postdp2'>
-                               {props.picurl === (undefined || null || "")?<div className='dp123'>{sanghauser.sanghaname.split('')[0]}</div>:<img className='postdp22' src = {`${props.picurl}`} alt="Girl in a jacket"/>}
+                               {props.picurl === (undefined || null || "")?<div className='dp123'>{sanghauser.sanghaname?.split('')[0]}</div>:<img className='postdp22' src = {`${props.picurl}`} alt="Girl in a jacket"/>}
                             </div>
                             <div className='named'>
                                 <div className='na2'><h4 className='name212'>{sanghauser.sanghaname}</h4></div>

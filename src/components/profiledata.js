@@ -9,10 +9,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const getsanghamembers = async (memberlist,members,uid) =>{
+  // console.log(uid)
     const data = doc(db, "user", `${uid}`);
     await getDoc(data).then((d) => {
-      // console.log(d.data());
-      // console.log(d.data()['members']);
        members(memberlist =  d.data()['members']);
     });
 }

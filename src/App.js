@@ -214,7 +214,7 @@ function App() {
                     let z = (<SanghaProfileMiddle picurl = {y['picurl']} user = {user['uid'] === y['uid']? true : false} uid = {y['uid']} name = {y['Sangha'] === true? y['sanghaname']:y['name']} sangha = {y['Sangha']} nameid = {y['Sangha'] === true?y['foundername']:y['username']}/>);
                     let t = (<UserProfileRight  inside = {profilecomponent} title = 'Members' uid = {y['uid']} />);
                     return (
-                      <Route  key={y['uid']} path={`/Sanghaprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {z} lists = {false} uid = {y['uid']} ></InsideHome>}/>
+                      <Route  key={y['uid']} path={`/Sanghaprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {t} datamiddle = {z} lists = {false} uid = {y['uid']} ></InsideHome>}/>
                     );
                   })}
                   <Route path='/SanghaSettings' element={<InsideHome navbar = {navbar} datamiddle = {settings} dataright = {Profiledp} lists = {true}></InsideHome>}/>

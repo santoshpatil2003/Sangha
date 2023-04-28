@@ -12,6 +12,38 @@
   /* height: 100%; */
 }
 
+.messagethem{
+  /* background-color: red; */
+  height: 50px;
+  width: 28%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 20%; */
+}
+
+.mess{
+  /* background-color: black; */
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mail{
+  height: 22px;
+  width: 22px;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.mail:hover{
+  height: 22px;
+  width: 22px;
+  color: #AC66FE;
+  cursor:pointer;
+}
+
 .linkname1212:hover{
   background-color: black;
 }
