@@ -36,6 +36,12 @@
     align-items: center;
 }
 
+.postdp222{
+    height: 150px;
+    border-radius: 100px;
+    width: 150px;
+}
+
 .name{
 	border-radius: 0%;
 	height: auto;

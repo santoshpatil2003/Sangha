@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react';
 import './LeftContainer.css';
 import Sanghaaddprofile from './Sanghaaddprofile';
 import { listjoinedsangha } from './profiledata';
+import { Link } from 'react-router-dom';
 
 export default function LeftContainer() {
   let [lists,list] = useState([]);
@@ -18,11 +19,13 @@ export default function LeftContainer() {
         <Sanghaaddprofile add = {true}></Sanghaaddprofile>
         <div className='sanghalists2122'>
           { 
-          lists?.map((e)=>{
+          lists?.map((e,index)=>{
               return (
-                <div className='ass' key={e['uid']}>
+                <Link key={index} className='ass2' to = {`/Sanghaprofile/${e['uid']}`}>
+                  <div className='ass' key={index}>
                     <Sanghaaddprofile sanghaname = {e['sanghaname']} picurl = {e['picurl']}  add = {false}></Sanghaaddprofile>
-                </div>
+                  </div>
+                </Link>
               );
           })
           }

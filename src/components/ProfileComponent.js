@@ -21,7 +21,7 @@ export default function ProfileComponent(props) {
   },[]);
 
 
-  if(props.url === undefined){
+  if(props.url === undefined  || props.url === ""){
     return (
       <Link to={props.sangha === false? `/userprofile/${props.uid}`:`/sanghaprofile/${props.uid}`} className='linkname1212'>
         <div className='sanghadata1212'>
@@ -38,7 +38,7 @@ export default function ProfileComponent(props) {
             </div>
             <div className='messagethem'>
                <div className='mess'>
-                  {message?<VscMail className='mail'></VscMail>:<div></div>}
+                  {message?<VscMail onClick={()=>{}} className='mail'></VscMail>:<div></div>}
                </div>
             </div>
         </div>
@@ -49,13 +49,18 @@ export default function ProfileComponent(props) {
       <Link to={props.sangha === false? `/userprofile/${props.uid}`:`/sanghaprofile/${props.uid}`} className='linkname1212'>
         <div className='sanghadata1212'>
             <div className='left-data1212'>
-              <div className='circle1212'></div>
+              <div className='circle1212'><img className='circle1212' src={`${props.url}`}/></div>
             </div>
             <div className='right-data1212'>
               <div className='nd1212'>
                   <div className='sanghaname'><h4 className='SN1212'>{props.profilename}</h4></div>
                   <div className='foundername'><span><h4 className='FN1212'>{props.profileid}</h4></span></div>
               </div>
+            </div>
+            <div className='messagethem'>
+               <div className='mess'>
+                  {message?<VscMail onClick={()=>{}} className='mail'></VscMail>:<div></div>}
+               </div>
             </div>
         </div>
       </Link>

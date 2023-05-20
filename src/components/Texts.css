@@ -1,0 +1,37 @@
+.text{
+    width: 96%;
+    max-width: 298px;
+    height: fit-content;
+    font-size: small;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1%;
+}
+
+.textinside{
+    width: fit-content;
+    max-width: 50%;
+    height: fit-content;
+    background-color: #dbdbd8;
+    color: black;
+    text-align: left;
+    padding: 2%;
+    /* border-radius: 5px 20px 5px; */
+    /* border-radius: 20px 5px 20px; */
+}
+/* .textinside:before {
+    position:absolute;
+    top:-40px;
+    left:0;
+    height:40px;
+    width: 40px;
+    box-shadow: 0 20px 0 0 #522d5b;
+    border-bottom-left-radius: 50%;
+ } */
+
+.textinside p{
+    margin: 0%;
+    margin: 4%;
+}
