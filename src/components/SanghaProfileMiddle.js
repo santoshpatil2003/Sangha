@@ -28,14 +28,14 @@ export default function SanghaProfileMiddle(props) {
             // console.log(props.uid);
             // getsanghatweets(tweet,tweets,props.uid);
             // console.log(tweet);
-            useruid(uid,uids,props.uid);
+            // useruid(uid,uids,props.uid);
             joined(joined2,join2,props.uid)
             flagship(flag = 0);
             if(props.sangha === true){
                 totalmem = totalmembers(props.uid,totalmem,totalmember);
             }
         }
-        // console.log(joined2);
+        // console.log(props.uid);
         return () => {
             mount = false;
             flagship(flag = 1);

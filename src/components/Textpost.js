@@ -1,14 +1,24 @@
-import React , {useState} from 'react'
+import React , {useState,useEffect} from 'react'
 import './Textpost.css'
 import {IoEllipsisVertical} from '@react-icons/all-files/io5/IoEllipsisVertical'
 // import { Select } from '@mui/material'
+import { useruid } from './profiledata';
 import { deletetweet } from './profiledata'
 
 export default function Textpost(props) {
     let [down , downs] = useState(false);
-    const delete2 =() =>{
-        deletetweet(props.heading,props.body,props.time);
-        downs(down = !down)
+    let [uid,uids] = useState(false)
+    useEffect(()=>{
+        useruid(uid,uids,props.user);
+        // console.log(props.user)
+        // console.log(uid)
+    })
+    const delete2 = () => {
+        // console.log(props.t);
+        deletetweet(props.heading,props.body,props.time,props.t).then(()=>{
+            console.log("deleted")
+        });
+        downs(down = !down);
     }
     return (
         <div className='textbox22'>
@@ -31,7 +41,7 @@ export default function Textpost(props) {
                     </div>
                 </div>
                 {
-                  props.user? <div className='three'>
+                  uid? <div className='three'>
                         <IoEllipsisVertical onClick={() => {downs(down = !down)}}></IoEllipsisVertical>
                     </div>:
                     <div></div>

@@ -17,7 +17,7 @@ export default function Sanghagettweet(props) {
               let l = [];
               s.forEach((m)=>{
                   l.push(m.data());
-                  console.log(m.data());
+                //   console.log(m.id);
               });
                 console.log(l);
               tweets(tweet = l);
@@ -48,7 +48,7 @@ export default function Sanghagettweet(props) {
             {tweet?.map((d , index) => {
                 return (
                         <div className='tw' key={index}>
-                            <Textpost user = {props.uid} communityname = {d['sanghaname']} time = {d['date']} heading = {d['heading']} body = {d['body']}></Textpost>
+                            <Textpost user = {props.userid} communityname = {d['sanghaname']} time = {d['date']} t = {d['time']} heading = {d['heading']} body = {d['body']}></Textpost>
                         </div>
                         );
                     }

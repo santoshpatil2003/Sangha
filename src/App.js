@@ -215,7 +215,7 @@ function App() {
                     );
                   })}
                   {sanghausers.map((y) => {
-                    // console.log(y);
+                    // console.log(y["uid"]);
                     let z = (<SanghaProfileMiddle userdata = {y} picurl = {y['picurl']} user = {user['uid'] === y['uid']? true : false} uid = {y['uid']} name = {y['Sangha'] === true? y['sanghaname']:y['name']} sangha = {y['Sangha']} nameid = {y['Sangha'] === true?y['foundername']:y['username']}/>);
                     let t = (<UserProfileRight title = 'Members' uid = {y['uid']} />);
                     // let t2 = (<UserProfileRight title = 'Messeges' uid = {y['uid']} />);

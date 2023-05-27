@@ -23,7 +23,7 @@ export default function MiddleContainer(props) {
           let l = [];
           s.forEach((m)=>{
               l.push(m.data());
-              console.log(m.data());
+              // console.log(m.data());
           });
             console.log(l);
           tws(tw = l);

@@ -2,7 +2,7 @@ import { auth } from "./Firebase";
 import { db , storage } from "./Firebase";
 // import { uid } from "./components/Firebase";
 // import { doc,setDoc } from "firebase/firestore";
-import {getDoc,doc , setDoc,onSnapshot, arrayUnion, collection, getDocs, updateDoc,arrayRemove,orderBy,query} from "firebase/firestore";
+import {getDoc,doc , setDoc,onSnapshot, arrayUnion, collection, getDocs, updateDoc,arrayRemove,orderBy,query, deleteDoc} from "firebase/firestore";
 // import {useCollectionData} from 'react-firebase-hooks/firestore'
 // // import { async } from "@firebase/util";
 import { onAuthStateChanged } from "firebase/auth";
@@ -114,7 +114,7 @@ const joined = (joined, join , uid) =>{
     // const snapshot = await setDoc(data,{tweets:arrayUnion({"heading" : `${heading}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`})},{merge: true});
     await getDoc(data).then((e) => {
         try {
-          e.data()['memberof'].forEach(async (d) => {
+          e?.data()['memberof'].forEach(async (d) => {
             let id = d['uid'];
             if(uid === id){
               join(joined = true);
@@ -216,13 +216,14 @@ const uploadtweet =  async (heading,body) => {
           const data2 = doc(db, "user", `${currentUser.uid}`);
           const snapshot2 = await getDoc(data2);
 
-
-          const data = doc(collection(db, "user", `${currentUser.uid}/tweet`));
+          const data = doc(db, "user", `${currentUser.uid}/tweet/${time}`);
+          // const data = doc(collection(db, "user", `${currentUser.uid}/tweet`));
           await setDoc(data,{"heading" : `${heading}`,"time":`${time}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`});
           await getDoc(data2).then((e) => {
               e.data()['members'].forEach(async (d) => {
                 let id = d['uid'];
-                const data3 = doc(collection(db, "user", `${id}/tweet`));
+                // const data3 = doc(collection(db, "user", `${id}/tweet`));
+                const data3 = doc(db, "user", `${id}/tweet/${time}`);
                 await setDoc(data3,{"heading" : `${heading}`,"time":`${time}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`});
               });
           });
@@ -293,19 +294,28 @@ const gettexts =  async (tex,ftexts,uid,texts,ftextlist) => {
 return l;
 }
 
-const deletetweet =  async (heading,body,date) => {
+const deletetweet =  async (heading,body,date,tweetid) => {
   // let date = `${new Date(Date.now()).getDate()}/${new Date(Date.now()).getMonth() + 1}/${new Date(Date.now()).getFullYear()}`;
   onAuthStateChanged(auth, async (currentUser) => {
         const data2 = doc(db, "user", `${currentUser.uid}`);
         const snapshot2 = await getDoc(data2);
-        const data = doc(db, "user", `${currentUser.uid}/content/tweet`);
-        await updateDoc(data,{tweets:arrayRemove({"heading" : `${heading}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`})});
+        console.log(date)
+        const data = doc(db, "user", `${currentUser.uid}/tweet/${tweetid}`);
+        deleteDoc(data).then((z)=>{
+          console.log(z)
+        });
+        console.log("1 stage")
+        // const res = await db.collection("user").doc(`${currentUser.uid}/tweet/${tweetuid}`);
+        // const data = doc(db, "user", `${currentUser.uid}/tweet/${tweetuid}`);
+        // await updateDoc(data,{tweets:arrayRemove({"heading" : `${heading}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`})});
         await getDoc(data2).then((e) => {
            try {
             e.data()['members'].forEach(async (d) => {
               let id = d['uid'];
-              const data3 = doc(db, "user", `${id}/content/tweet`);
-              await updateDoc(data3,{tweets:arrayRemove({"heading" : `${heading}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`})});
+              const data3 = doc(db, "user", `${id}/tweet/${tweetid}`);
+              // await updateDoc(data3,{tweets:arrayRemove({"heading" : `${heading}` ,"body":`${body}`,"date": `${date}`,"uid": `${currentUser.uid}`, "sanghaname": `${snapshot2.data()["sanghaname"]}`})});
+              deleteDoc(data3)
+              console.log("2 stage")
             });
            } catch (error) {
               console.log(error);
