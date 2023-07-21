@@ -35,6 +35,7 @@ import { getuser } from './components/profiledata';
 import { listAllUsers , listAllUsers2 } from './components/profiledata';
 import { ColorRing } from 'react-loader-spinner';
 import 'react-circular-progressbar/dist/styles.css';
+import Sanghagettweet from './components/Sanghagettweet';
 // import {data} from './profiledata';
 // import {docsnap} from './profiledata';
 
@@ -208,7 +209,7 @@ function App() {
                     let z = (<UserProfileMiddle url = {y['picurl']} name = {y['Sangha'] === true? y['sanghaname']:y['name']} nameid = {y['username']} uid = {y['uid']} />);
                     let t = (<UserProfileRight title = 'Messeges' uid = {y['uid']} />);
                     let t2 = (<UserProfileRight title = 'Messege' uid = {y['uid']} />);
-                    console.log(user.uid)
+                    // console.log(user.uid)
                     return (
                       <Route key={y['uid']} path={`/userprofile/${y['uid']}`} element={<InsideHome userid = {user.uid} uid = {y['uid']} navbar = {navbar} dataright = {user.uid === y['uid']?t:t2} datamiddle = {z} lists = {false}></InsideHome>}/>
                       // <Route path={`/Sanghaprofile/${y['uid']}`} element={<InsideHome navbar = {navbar} dataright = {sanghaprofileright} datamiddle = {z} lists = {false} uid = {y['uid']} ></InsideHome>}/>
@@ -216,7 +217,8 @@ function App() {
                   })}
                   {sanghausers.map((y) => {
                     // console.log(y["uid"]);
-                    let z = (<SanghaProfileMiddle userdata = {y} picurl = {y['picurl']} user = {user['uid'] === y['uid']? true : false} uid = {y['uid']} name = {y['Sangha'] === true? y['sanghaname']:y['name']} sangha = {y['Sangha']} nameid = {y['Sangha'] === true?y['foundername']:y['username']}/>);
+                    let i = (<Sanghagettweet userid = {y['uid']} ></Sanghagettweet>);
+                    let z = (<SanghaProfileMiddle userdata = {y} picurl = {y['picurl']} tweet = {i}  user = {user['uid'] === y['uid']? true : false} uid = {y['uid']} name = {y['Sangha'] === true? y['sanghaname']:y['name']} sangha = {y['Sangha']} nameid = {y['Sangha'] === true?y['foundername']:y['username']}/>);
                     let t = (<UserProfileRight title = 'Members' uid = {y['uid']} />);
                     // let t2 = (<UserProfileRight title = 'Messeges' uid = {y['uid']} />);
                     return (

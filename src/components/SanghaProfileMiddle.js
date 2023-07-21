@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react'
+import React, { useState , useEffect, useRef } from 'react'
 import SanghaPopup from './SanghaPopup';
 import './SanghaProfileMiddle.css'
 import JoinCost from './JoinCost.js'
@@ -8,6 +8,9 @@ import { totalmembers } from './profiledata';
 import { useruid } from './profiledata';
 import { joined } from './profiledata';
 import Sanghagettweet from './Sanghagettweet';
+import { db } from "./Firebase";
+// import Textpost from './Textpost';
+import {onSnapshot, collection, orderBy,query} from "firebase/firestore";
 
 
 export default function SanghaProfileMiddle(props) {
@@ -21,6 +24,31 @@ export default function SanghaProfileMiddle(props) {
     let [flag, flagship] = useState(1);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    // let tweet = useRef([])
+    let [tweet, tweets] = useState([]);
+    // let [flag, flagship] = useState(1);
+    const gettweets = async () => {
+        const data = collection(db, "user", `${props.uid}/tweet`);
+        try {
+            const itemsQuery = query(data, orderBy('time'));
+            const unsub = onSnapshot(itemsQuery,(s)=>{
+            let l = [];
+            s.forEach((m)=>{
+                l.push(m.data());
+              //   console.log(m.id);
+            });
+              // console.log(l);
+              tweets(tweet = l);
+            //   tweet.current = l;
+            // ftextlist(texts = l)
+          //   console.log("added")
+        });
+            return () => {unsub()}
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         let mount = true;
         if(mount === true){
@@ -29,6 +57,7 @@ export default function SanghaProfileMiddle(props) {
             // getsanghatweets(tweet,tweets,props.uid);
             // console.log(tweet);
             // useruid(uid,uids,props.uid);
+            gettweets();
             joined(joined2,join2,props.uid)
             flagship(flag = 0);
             if(props.sangha === true){
@@ -40,8 +69,8 @@ export default function SanghaProfileMiddle(props) {
             mount = false;
             flagship(flag = 1);
         }
-    },[])
-    console.log(props.userdata.sanghaname);
+    },[tweet])
+    // console.log(props.userdata.sanghaname);
     return (
         <div className='middlebox2'>
             <main>
@@ -73,7 +102,19 @@ export default function SanghaProfileMiddle(props) {
                 <div className='no'>
                     {(props.sangha === true && props.user === false && joined2 === false)?<JoinCost joined = {joined2} joins = {join2} uid = {props.uid} sanghaname = {props.name} join = {false} foundername = {props.nameid} show={modalShow} onHide={() => setModalShow(false)}></JoinCost>: (props.sangha === true && props.user === false && joined2 === true)? <JoinCost uid = {props.uid} joined = {joined2} joins = {join2} sanghaname = {props.name} foundername = {props.nameid} show={modalShow} onHide={() => setModalShow(false)}></JoinCost>:<div></div>}
                 </div>
-                <Sanghagettweet userid = {props.uid}></Sanghagettweet>
+                {/* <Sanghagettweet userid = {props.uid}></Sanghagettweet> */}
+                {/* {props.tweet} */}
+                <div className='bottompost'>
+            {tweet?.map((d , index) => {
+                return (
+                        <div className='tw' key={index}>
+                            <Textpost user = {props.userid} communityname = {d['sanghaname']} time = {d['date']} t = {d['time']} heading = {d['heading']} body = {d['body']}></Textpost>
+                        </div>
+                        );
+                    }
+                )
+            }
+        </div>
             </main>
             {/* <div className='demo'></div> */}
             {/* <div className='bottompost'>

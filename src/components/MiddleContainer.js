@@ -25,10 +25,10 @@ export default function MiddleContainer(props) {
               l.push(m.data());
               // console.log(m.data());
           });
-            console.log(l);
+            // console.log(l);
           tws(tw = l);
           // ftextlist(texts = l)
-          console.log("added")
+          // console.log("added")
       });
           return () => {unsub()}
       } catch (error) {
