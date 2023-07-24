@@ -120,6 +120,7 @@ export default function Sanghagettweet(props) {
     }else{
         return;
     }
+
         // gettweets(tw,tws,props.uid);
       },[tweet]);
 

@@ -13,41 +13,48 @@ export default function Txtmessege(props) {
     let [tex, ftexts] = useState([]);
     let [chat, fchats] = useState("");
     let [texts, ftextlist] = useState([]);
-    // let [list, ftextlist2] = useState([]);
+    let [uid, uids] = useState();
     let [flag, flagship] = useState(1);
+    const gettex = async () => {
+        const data = collection(db, "user", `${props.userid}/text/${props.uid}/chat`);
+        try {
+            const itemsQuery = query(data, orderBy('time'));
+            const unsub = onSnapshot(itemsQuery,(s)=>{
+            let l = [];
+            s.forEach((m)=>{
+                l.push(m.data());
+                console.log(m.data());
+            });
+            //   console.log("added");
+            ftexts(tex = l);
+            // ftextlist(texts = l)
+            console.log("added")
+        });
+            return () => {unsub()}
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    if(uid != props.userid){
+        uids(uid = props.userid);
+    }
 
     useEffect(()=>{
-            const gettex = async () => {
-                const data = collection(db, "user", `${props.userid}/text/${props.uid}/chat`);
-                try {
-                    const itemsQuery = query(data, orderBy('time'));
-                    const unsub = onSnapshot(itemsQuery,(s)=>{
-                    let l = [];
-                    s.forEach((m)=>{
-                        l.push(m.data());
-                    });
-                    //   console.log("added");
-                    ftexts(tex = l);
-                    // ftextlist(texts = l)
-                    console.log("added")
-                });
-                    return () => {unsub()}
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-        if(flag === 1){
-            gettex().then(()=>{
-                if(tex.length === 0 ){
-                    flagship(flag = 1);
-                    gettex()
-                }
-            })
-            flagship(flag = 0);
-        }else{
-            return;
-        }
-    },[tex])
+            
+        // if(flag === 1){
+        //     gettex().then(()=>{
+        //         if(tex.length === 0 ){
+        //             flagship(flag = 1);
+        //             gettex()
+        //         }
+        //     })
+        //     flagship(flag = 0);
+        // }else{
+        //     return;
+        // }
+        gettex()
+    },[uid])
 
     const upload = () =>{
             onAuthStateChanged(auth, async (currentUser) => {
@@ -67,7 +74,7 @@ export default function Txtmessege(props) {
         <div className='lis'>
             {/* {props.inside} */}
             { 
-            tex?.length === 0? <div>Loading...</div> : tex?.map((m,index)=>{
+            tex?.length === 0? <div>No messege sent</div> : tex?.map((m,index)=>{
                   return (
                     <div className='s55' key={index}>
                         {/* <Sanghalistcomponent sanghaname = {m['sanghaname']} uid = {m['uid']} foundername = {m['foundername']}></Sanghalistcomponent> */}

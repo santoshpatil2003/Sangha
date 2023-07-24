@@ -7,9 +7,15 @@ import { getsanghamembers} from './profiledata';
 
 export default function Members(props) {
     let [memberlist, members] = useState([]);
+    let [uid, uids] = useState();
+
+    if(uid != props.uid){
+      uids(uid = props.uid);
+  }
     useEffect(()=>{
         getsanghamembers(memberlist,members,props.uid);
-      },[memberlist]);
+        console.log("print")
+      },[uid]);
 
   return (
     <div className='messegebox'>

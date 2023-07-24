@@ -18,7 +18,7 @@ export default function SanghaProfileMiddle(props) {
     let [joined2,join2] = useState(false);
     const [show, setShow] = useState(false);
     const [modalShow, setModalShow] = useState(false);
-    let [uid,uids] = useState(false);
+    let [uid,uids] = useState();
     // let [sanghauser, sanghadata] = useState({});
     // let [tweet, tweets] = useState([]);
     let [flag, flagship] = useState(1);
@@ -26,7 +26,7 @@ export default function SanghaProfileMiddle(props) {
     const handleShow = () => setShow(true);
     // let tweet = useRef([])
     let [tweet, tweets] = useState([]);
-    // let [flag, flagship] = useState(1);
+    let [flag2, flagship2] = useState(1);
     const gettweets = async () => {
         const data = collection(db, "user", `${props.uid}/tweet`);
         try {
@@ -35,29 +35,37 @@ export default function SanghaProfileMiddle(props) {
             let l = [];
             s.forEach((m)=>{
                 l.push(m.data());
-              //   console.log(m.id);
+              
             });
-              // console.log(l);
+              
               tweets(tweet = l);
-            //   tweet.current = l;
-            // ftextlist(texts = l)
-          //   console.log("added")
+            
         });
             return () => {unsub()}
         } catch (error) {
             console.log(error);
         }
     }
-
+    if(uid != props.uid){
+        uids(uid = props.uid);
+    }
     useEffect(() => {
         let mount = true;
         if(mount === true){
-            // getsanghadata(props.uid,sanghadata,sanghauser);
-            // console.log(props.uid);
-            // getsanghatweets(tweet,tweets,props.uid);
-            // console.log(tweet);
-            // useruid(uid,uids,props.uid);
+            // gettweets();
+            // if(flag2 === 1){
+            //     gettweets().then(()=>{
+            //         if(tweet.length === 0 ){
+            //             flagship2(flag2 = 1);
+            //             gettweets();
+            //             console.log("print tweet");
+            //         }else{
+            //             // flagship2(flag2 = 0);
+            //         }
+            //     })
+            // }
             gettweets();
+            // console.log("print tweet");
             joined(joined2,join2,props.uid)
             flagship(flag = 0);
             if(props.sangha === true){
@@ -69,7 +77,7 @@ export default function SanghaProfileMiddle(props) {
             mount = false;
             flagship(flag = 1);
         }
-    },[tweet])
+    },[uid])
     // console.log(props.userdata.sanghaname);
     return (
         <div className='middlebox2'>
